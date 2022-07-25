@@ -29,6 +29,6 @@ spring:
           predicates:
             - Path=/moto/**
         - id: reports
-          uri: lb://api/v1/reports
+          uri: lb://reports
           predicates:
-            - Path=/api/v1/reports/**
+            - Path=/reports/**
