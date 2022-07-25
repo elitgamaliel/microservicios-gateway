@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8"/>
+<head>
+    <style>
+        @page {
+            size: 300px 400px;
+            margin-top: 0px;
+            margin-right: 7px;
+            margin-left: 6px;
+        }
+
+        html,
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            padding: 0% 0%;
+        }
+
+        .container {
+            height: 100%;
+        }
+
+        .title1 {
+            text-align: center;
+            font-size: 11px;
+        }
+
+        .title2 {
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .header {
+            text-align: center;
+            font-size: 9px;
+        }
+
+        table,
+        thead,
+        tbody,
+        tfoot,
+        tr,
+        th,
+        td {
+            font-family: Arial, sans-serif;
+            font-size: 8px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            border-spacing: 0;
+            border-color: inherit;
+            font-weight: inherit;
+            -webkit-border-horizontal-spacing: 0;
+            -webkit-border-vertical-spacing: 0;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 1px;
+            empty-cells: hide;
+            border-collapse: separate;
+            border-spacing: 0px;
+        }
+
+        .footer {
+            font-size: 9px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <table style="text-align: center;">
+        <tr>
+            <td style="text-align: center;"><img th:src="@{classpath:static/images/healthy.png}" height="60px"/></td>
+            <td>
+                <div class="title1">POLICLINICO</div>
+                <div class="title2">FATIMA</div>
+            </td>
+            <td style="text-align: center;"><img th:src="@{classpath:static/images/fatima.png}" height="60px"/></td>
+        </tr>
+    </table>
+    <div class="header">PARQUE LEONCIO PRADO N° 103-ZAPALLAL-PUENTE PIEDRA ALT KM 34.6 DE LA PANAMERICANA NORTE</div>
+    <div class="header">RUC: 20600287177</div>
+    <div class="header">TELF: 550-0030</div>
+    <div class="header">CEL: 946228468</div>
+</div>
+<hr/>
+<div class="header" th:text="${ticket.typeTicket}">NOTA DE VENTA</div>
+<div class="header" th:text="${ticket.numberTicket}">001-0000000</div>
+<br/>
+<div class="header" th:text="'Paciente ' + ${ticket.client}">Paciente&nbsp;&nbsp;&nbsp;&nbsp;</div>
+<div class="header" th:text="'HC: ' + ${ticket.documentNumber1}">HC: 0000000</div>
+<hr/>
+<div class="header" th:text="'Fecha: '+${ticket.date}+'&nbsp;&nbsp;&nbsp;&nbsp;Hora: '+${ticket.time}">Fecha: Hora:
+    11:22
+</div>
+<div class="header" th:text="'Cajero: '+${ticket.cashier}">Cajero:</div>
+<hr/>
+<div>
+    <table class="default">
+        <thead>
+        <tr>
+            <td style="width: 60px;">Cod</td>
+            <td style="width: 100px;">Descripción</td>
+            <td style="width: 60px; text-align: right">P.Uni</td>
+            <td></td>
+            <td style="width: 30px; text-align: right">Cant</td>
+            <td style="width: 70px; text-align: right">Importe</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="detalle : ${ticket.ticketDetail}">
+            <td style="width: 60px;" th:text="${detalle.code}">00032</td>
+            <td style="width: 100px;" th:text="${detalle.description}">PAQUETE MEDICO</td>
+            <td style="width: 60px; text-align: right" th:text="${#numbers.formatCurrency(detalle.unitPrice)}">S/ 65.00</td>
+            <td>&nbsp;&nbsp;×</td>
+            <td style="width: 30px; text-align: right" th:text="${detalle.quantity}">1</td>
+            <td style="width: 70px; text-align: right" th:text="${#numbers.formatCurrency(detalle.amount)}">S/ 65.00</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td colspan="5">TOTAL RECIBIDO:</td>
+            <td style="text-align: right" th:text="${#numbers.formatCurrency(ticket.total)}">S/ 65.00</td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+            <td style="text-align: right" th:text="${ticket.typeBox}">tipoCaja</td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<div th:if="${ticket.appointmentTime != '--:--'}">
+    <table class="default">
+        <tr>
+            <td>Hora de cita:</td>
+            <td style="text-align: right;" th:text="${ticket.appointmentTime}">HoraCita</td>
+        </tr>
+    </table>
+</div>
+<div class="footer" th:if="${ticket.appointmentTime != '--:--'}">Llegar 10 minutos antes de su cita programada.</div>
+<br/>
+<div class="footer">Para cualquier reclamo válido 7 días después de la fecha de emisión.</div>
+<div class="footer">Desarrollado por <b>System JAADE S.A.C.</b></div>
+</body>
+</html>

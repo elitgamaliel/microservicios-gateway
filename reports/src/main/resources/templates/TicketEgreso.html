@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8"/>
+<head>
+    <style>
+        @page {
+            size: 300px 400px;
+            margin-top: 0px;
+            margin-right: 7px;
+            margin-left: 6px;
+        }
+
+        html,
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            padding: 0% 0%;
+        }
+
+        .container {
+            height: 100%;
+        }
+
+        .title1 {
+            text-align: center;
+            font-size: 11px;
+        }
+
+        .title2 {
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .header {
+            text-align: center;
+            font-size: 9px;
+        }
+
+        table,
+        thead,
+        tbody,
+        tfoot,
+        tr,
+        th,
+        td {
+            font-family: Arial, sans-serif;
+            font-size: 8px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            border-spacing: 0;
+            border-color: inherit;
+            font-weight: inherit;
+            -webkit-border-horizontal-spacing: 0;
+            -webkit-border-vertical-spacing: 0;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 1px;
+            empty-cells: hide;
+            border-collapse: separate;
+            border-spacing: 0px;
+        }
+
+        .footer {
+            font-size: 9px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <table style="text-align: center;">
+        <tr>
+            <td style="text-align: center;"><img th:src="@{classpath:static/images/healthy.png}" height="60px"/></td>
+            <td>
+                <div class="title1">POLICLINICO</div>
+                <div class="title2">FATIMA</div>
+            </td>
+            <td style="text-align: center;"><img th:src="@{classpath:static/images/fatima.png}" height="60px"/></td>
+        </tr>
+    </table>
+    <div class="header">PARQUE LEONCIO PRADO N° 103-ZAPALLAL-PUENTE PIEDRA ALT KM 34.6 DE LA PANAMERICANA NORTE</div>
+    <div class="header">RUC: 20600287177</div>
+    <div class="header">TELF: 550-0030</div>
+    <div class="header">CEL: 946228468</div>
+</div>
+<hr/>
+<div class="header" th:text="${ticket.typeTicket}">RECIBO DE EGRESO</div>
+<div class="header" th:text="${ticket.numberTicket}">001-0000000</div>
+<br/>
+<div class="header" th:text="'Motivo: '+ ${ticket.reason}">Motivo &nbsp;</div>
+<hr/>
+<div class="header" th:text="'Fecha: '+${ticket.date}+'&nbsp;&nbsp;&nbsp;&nbsp;Hora: '+${ticket.time}">Fecha: Hora:
+    11:22
+</div>
+<div class="header" th:text="'Cajero: '+${ticket.cashier}">Cajero:</div>
+<hr/>
+<div>
+    <table class="default">
+        <thead>
+        <tr>
+            <td style="width: 60px;">Cod</td>
+            <td style="width: 200px;">Descripción</td>
+            <td style="width: 70px; text-align: right">Importe</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="detalle : ${ticket.ticketDetail}">
+            <td style="width: 60px;" th:text="${detalle.code}">00032</td>
+            <td style="width: 200px;" th:text="${detalle.description}">PAQUETE MEDICO</td>
+            <td style="width: 70px; text-align: right" th:text="${#numbers.formatCurrency(detalle.amount)}">S/ 65.00</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td colspan="2">TOTAL RECIBIDO:</td>
+            <td style="text-align: right" th:text="${#numbers.formatCurrency(ticket.total)}">S/ 65.00</td>
+        </tr>
+        <tr>
+            <td colspan="2"></td>
+            <td style="text-align: right" th:text="${ticket.typeBox}">tipoCaja</td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<br/>
+<br/>
+<div>
+    <table style="text-align: center; padding: 0% 20%;">
+        <tr>
+            <td style="text-align: center; border-style: solid; border-width: 1px 0px 0px 0px;word-wrap: break-word;" th:text="${ticket.client}">RazonSocial</td>
+        </tr>
+        <tr>
+            <td th:if="${ticket.documentNumber1!= null }" style="text-align: center;" th:text="'Dni: '+${ticket.documentNumber1}">Dni </td>
+        </tr>
+        <tr >
+            <td th:if="${ticket.documentNumber2!= null}" style="text-align: center;" th:text="'Ruc: '+${ticket.documentNumber2}">Ruc </td>
+        </tr>
+    </table>
+</div>
+<br/>
+<div class="footer">Favor de revisar su cambio antes de retirarse, Despues no se aceptan reclamos.</div>
+<div class="footer">Desarrollado por <b>System JAADE S.A.C.</b></div>
+</body>
+</html>
