@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+
+    <style>
+@page {
+            size: A4;
+            margin-top: 0px;
+            margin-right: 7px;
+            margin-left: 6px;
+            text-align:center
+        }
+
+         html,
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            padding: 0%;
+        }
+        .container {
+        }
+
+        .title1 {
+            text-align: center;
+            font-size: 11px;
+        }
+
+        .title2 {
+            text-align: center;
+            font-size: 22px;
+        }
+
+        table,
+        thead,
+        tbody,
+        tfoot,
+        tr,
+        th,
+        td {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            border-spacing: 0;
+            border-color: inherit;
+            font-weight: inherit;
+            -webkit-border-horizontal-spacing: 0;
+            -webkit-border-vertical-spacing: 0;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 1px;
+            empty-cells: hide;
+            border-collapse: separate;
+            border-spacing: 0px;
+            margin: 0 auto;
+
+        }
+
+        .product{
+            border-collapse: collapse;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius:5px;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            background-color: rgba(255,255,255,0.2);
+            color: black;
+        }
+        th {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <table style="text-align: center;">
+        <tr>
+            <td style="text-align: center;"><img th:src="@{classpath:static/images/healthy.png}" height="100px"/></td>
+            <td>
+                <div class="title1">POLICLINICO PARROQUIAL NUESTRA SEÑORA DE FÁTIMA</div>
+                <div class="title2">PRODUCTOS EN STOCK</div>
+            </td>
+            <td style="text-align: center;"><img th:src="@{classpath:static/images/fatima.png}" height="100px"/></td>
+        </tr>
+    </table>
+    <br/>
+    <table class="product">
+        <thead style="background: #36B0B7; font-weight: bold">
+        <tr>
+            <td>CODIGO</td>
+            <td>NOMBRE PRODUCTO</td>
+            <td>STOCK</td>
+        </tr>
+        </thead>
+        <tbody style="background: #d4edee">
+        <tr th:each="detalle : ${stock.stockDetail}">
+            <td th:text="${detalle.code}">XXXXXXXXXXXX</td>
+            <td th:text="${detalle.product}">10</td>
+            <td th:text="${detalle.stock}">10</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

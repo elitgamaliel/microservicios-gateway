@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+    table,
+        thead,
+        tbody,
+        tfoot,
+        tr,
+        th,
+        td {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            border-spacing: 0;
+            border-color: inherit;
+            font-weight: inherit;
+            -webkit-border-horizontal-spacing: 0;
+            -webkit-border-vertical-spacing: 0;
+        }
+
+    table {
+            width: 100%;
+            margin-bottom: 1px;
+            empty-cells: hide;
+            border-collapse: separate;
+            border-spacing: 0px;
+            margin: 0 auto;
+
+        }
+        .product{
+            border-collapse: collapse;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius:5px;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            background-color: rgba(255,255,255,0.2);
+            color: black;
+        }
+        th {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 style="text-align: center" th:text="${constancy.year}">Nombre Año</h1>
+
+    <div style="margin 0 auto">
+        "La administración del Policlínico Parroquial Nuestra Señora de Fátima, hace
+        constar que el paciente <span th:text="${constancy.namePatient}">Name</span>; de sexo <span th:text="${constancy.sex}">sexo</span> de <span th:text="${constancy.age}"></span>
+         años de edad, registrando fecha de nacimiento <span th:text="${constancy.birthDate}">birthDate</span> ; fue
+        atendido en Nuestro Policlínico Parroquial  Nuestra Señora de Fátima en los
+        siguientes periodos,  para sus asistencia médica, según Historia Clínica N°
+        <span th:text="${constancy.historyNumber}">historyNumber</span>."
+    </div>
+    <br/>
+    <table class="product">
+        <thead style="background: #9AA39D; font-weight: bold">
+        <tr>
+            <td>Referencia</td>
+            <td>Fecha</td>
+            <td>Profesional</td>
+        </tr>
+        </thead>
+        <tbody style="background: #DDE3DF">
+        <tr>
+            <td th:text="${constancy.reference}">Referencia</td>
+            <td th:text="${constancy.date}">10/10/2022</td>
+            <td th:text="${constancy.professional}">Profesionalxxx</td>
+        </tr>
+        </tbody>
+
+         </table>
+
+    <p>"Se expide la siguiente constancia de atención a solicitud de <span th:text="${constancy.applicant}">applicant</span>; para los fines que estime conveniente. "</p>
+
+    <p style="text-align: right">Zapallal, <span th:text="${constancy.dateNow}">Date</span></p>
+
+    <p style="text-align: center; color:#CE1C0E">El siguiente documento carece de valor médico legal y es de uso únicamente profesional.</p>
+
+
+</div>
+
+</body>
+</html>

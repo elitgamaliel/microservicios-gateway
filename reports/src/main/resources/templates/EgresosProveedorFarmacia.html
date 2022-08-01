@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+
+  <style>
+@page {
+            size: A4;
+            margin-top: 0px;
+            margin-right: 7px;
+            margin-left: 6px;
+            text-align:center
+        }
+
+         html,
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            padding: 0%;
+        }
+        .container {
+        }
+
+        .title1 {
+            text-align: center;
+            font-size: 11px;
+        }
+
+        .title2 {
+            text-align: center;
+            font-size: 22px;
+        }
+
+        table,
+        thead,
+        tbody,
+        tfoot,
+        tr,
+        th,
+        td {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            border-spacing: 0;
+            border-color: inherit;
+            font-weight: inherit;
+            -webkit-border-horizontal-spacing: 0;
+            -webkit-border-vertical-spacing: 0;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 1px;
+            empty-cells: hide;
+            border-collapse: separate;
+            border-spacing: 0px;
+            margin: 0 auto;
+
+        }
+
+        .product{
+            border-collapse: collapse;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius:5px;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            background-color: rgba(255,255,255,0.2);
+            color: black;
+        }
+        th {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+  <h1 style="text-align: center" class="title2">REPORTES DE EGRESOS</h1>
+  <br/>
+  <table>
+    <thead style="background: #36B0B7; font-weight: bold">
+    <tr>
+      <td>RUC</td>
+      <td style="width: 100px;">NOMBRE</td>
+      <td>MOTIVO</td>
+      <td>FECHA</td>
+      <td>HORA</td>
+      <td>MONTO</td>
+    </tr>
+    </thead>
+    <tbody style="background: #d4edee">
+    <tr th:each="detalle : ${expense.expenseDetail}">
+      <td th:text="${detalle.ruc}">102939493932</td>
+      <td style="width: 100px;" th:text="${detalle.name}">Eli Gamaliel</td>
+      <td th:text="${detalle.reason}">XXXXXXXXXXXX</td>
+      <td th:text="${detalle.date}">10/04/2022</td>
+      <td th:text="${detalle.hour}">10:50</td>
+      <td th:text="${detalle.amount}">S/. 100</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
