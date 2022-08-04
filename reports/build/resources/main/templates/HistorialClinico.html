@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+        @page {
+            size: A4;
+            margin-top: 0px;
+            margin-right: 7px;
+            margin-left: 6px;
+        }
+
+        html,
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            padding: 0%;
+        }
+
+        .title1 {
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .title2 {
+            text-align: center;
+            font-size: 26px;
+            font-family: cursive ;
+        }
+
+        .header {
+            text-align: center;
+            font-size: 9px;
+        }
+
+        table,
+        thead,
+        tbody,
+        tfoot,
+        tr,
+        th,
+        td {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            border-spacing: 0;
+            border-color: inherit;
+            font-weight: inherit;
+            -webkit-border-horizontal-spacing: 0;
+            -webkit-border-vertical-spacing: 0;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 1px;
+            empty-cells: hide;
+            border-collapse: separate;
+            border-spacing: 0px;
+            margin: 0 auto;
+        }
+
+        .table-antecedentes{
+            background: white;
+            border-width: 1px;
+            border-radius:5px;
+
+
+            -webkit-box-shadow: 2px 2px 5px #999;
+            -moz-box-shadow: 2px 2px 5px #999;
+        }
+
+        .tabla-datos{
+            padding: 0 20%;
+            backaground: #CCCCCC;
+        }
+        .tabla-datos td{
+            padding: 3px 0;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <table style="text-align: center;">
+        <tr>
+            <td style="text-align: center;"><img th:src="@{classpath:static/images/fatima.png}" height="100px"/></td>
+            <td>
+                <div class="title1">POLICLINICO PARROQUIAL</div>
+                <div class="title2">HISTORIA CLINICA</div>
+            </td>
+            <td style="text-align: center;"><img th:src="@{classpath:static/images/healthy.png}" height="100px"/></td>
+        </tr>
+    </table>
+    <br/>
+    <br/>
+    <table class="tabla-datos">
+        <tr>
+            <td colspan="5" style="font-weight: bold; font-size: 15px">DATOS DEL PACIENTE</td>
+        </tr>
+        <tr>
+            <td style="width: 80px" th:text="${clinicHistory.documentType}">DNI:</td>
+            <td  colspan="4" th:text="${clinicHistory.documentNumber}">00000000</td>
+        </tr>
+        <tr>
+            <td style="width: 80px">Nombre:</td>
+            <td colspan="4" th:text="${clinicHistory.fullName}">APOLINARIO RIOS, MARIA PAMELA</td>
+        </tr>
+        <tr>
+            <td style="width: 80px">Nacionalidad:</td>
+            <td colspan="4" th:text="${clinicHistory.nationality}">Perú</td>
+        </tr>
+
+        <tr>
+            <td style="width: 80px">Lugar de Nacimiento:</td>
+            <td colspan="4" th:text="${clinicHistory.place}">Lima/Puente Piedra/ Puente Piedra</td>
+        </tr>
+        <tr>
+            <td style="width: 80px">Fecha de Nacimiento:</td>
+            <td th:text="${clinicHistory.birthDate}">18/09/2021</td>
+            <td style="width: 30%"></td>
+            <td style="width: 80px">Edad:</td>
+            <td th:text="${clinicHistory.age}">20 años, 8 meses, 21 días</td>
+        </tr>
+        <tr>
+            <td style="width: 80px">Sexo:</td>
+            <td th:text="${clinicHistory.sex}">Femenino</td>
+            <td style="width: 30%"></td>
+            <td style="width: 80px">Estado Civil:</td>
+            <td th:text="${clinicHistory.civilStatus}">Soltero(a)</td>
+        </tr>
+        <tr>
+            <td style="width: 80px">Estudios:</td>
+            <td th:text="${clinicHistory.studyLevel}">FALTA</td>
+            <td style="width: 30%"></td>
+            <td style="width: 80px">Ocupacion:</td>
+            <td th:text="${clinicHistory.occupation}">FALTA</td>
+        </tr>
+        <tr>
+            <td style="width: 80px">Profesion:</td>
+            <td th:text="${clinicHistory.profession}">FALTA</td>
+            <td style="width: 30%"></td>
+            <td style="width: 80px">Etnia:</td>
+            <td th:text="${clinicHistory.ethnicity}">Mestizo</td>
+        </tr>
+        <tr>
+            <td style="width: 80px">Religion:</td>
+            <td colspan="4" th:text="${clinicHistory.religion}">CATOLICO</td>
+        </tr>
+        <tr>
+            <td style="width: 80px">Telf. Celular:</td>
+            <td th:text="${clinicHistory.cellPhone}">999944444</td>
+            <td style="width: 30%"></td>
+            <td style="width: 80px">Telf. Fijo:</td>
+            <td th:text="${clinicHistory.landlinePhone}">8989898</td>
+        </tr>
+        <tr>
+            <td style="width: 80px">Dirección:</td>
+            <td colspan="4" th:text="${clinicHistory.address}">Puente Piedra</td>
+        </tr>
+    </table>
+    <table style="text-align: center;margin: 5% 10%;padding:5% 0; background: #F2F2F2; width: 80%;">
+        <tr>
+            <td colspan="3" style="font-weight: bold;margin: 1% 0; font-weight: bold">ANTECEDENTES PATOLOGICOS</td>
+        </tr>
+        <tr style="padding: 5px 0;">
+            <td >FAMILIA</td>
+            <td style="width: 20px;"></td>
+            <td >PERSONALES</td>
+        </tr>
+        <tr>
+            <td>
+                <table class="table-antecedentes" style="width: 180px;">
+                    <tr>
+                        <td style="text-align: left;padding: 1% 0;">DH</td>
+                        <td style="text-align: center;padding: 1% 0;">
+                            <a th:if="${clinicHistory.dh_family==true}" th:text="true">●</a>
+                            <span th:if="${clinicHistory.dh_family==false}" th:text="false">○</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;padding: 1% 0; width: 50px">HTA</td>
+                        <td style="text-align: center;padding: 1% 0;width: 20px">
+                            <a th:if="${clinicHistory.hta_family==true}" th:text="true">●</a>
+                            <span th:if="${clinicHistory.hta_family==false}" th:text="false">○</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;padding: 1% 0; width: 50px">DESLIPIDEMIA</td>
+                        <td style="text-align: center;padding: 1% 0;">
+                            <a th:if="${clinicHistory.deslipidemia_family==true}" th:text="true">●</a>
+                            <span th:if="${clinicHistory.deslipidemia_family==false}" th:text="false">○</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;padding: 1% 0; width: 50px">TBC</td>
+                        <td style="text-align: center;padding: 1% 0;">
+                            <a th:if="${clinicHistory.tbc_family==true}" th:text="true">●</a>
+                            <span th:if="${clinicHistory.tbc_family==false}" th:text="false">○</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;padding: 1% 0; width: 50px">DIABETES</td>
+                        <td style="text-align: center;padding: 1% 0;">
+                            <a th:if="${clinicHistory.diabetes_family==true}" th:text="true">●</a>
+                            <span th:if="${clinicHistory.diabetes_family==false}" th:text="false">○</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;padding: 1% 0; width: 50px">OTROS</td>
+                        <td style="text-align: center;padding: 1% 0;">
+                            <a th:if="${clinicHistory.otros_family==true}" th:text="true">●</a>
+                            <span th:if="${clinicHistory.otros_family==false}" th:text="false">○</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;padding: 1% 0;" th:if="${clinicHistory.otros_family==true}" th:text="'OTROS: '+${clinicHistory.otros_texto_family}">...</td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width: 20px;"></td>
+            <td>
+                <table class="table-antecedentes" style="width: 180px;">
+                    <tr>
+                        <td style="text-align: left;padding: 1% 0;">DH</td>
+                        <td style="text-align: center;padding: 1% 0;">
+                            <a th:if="${clinicHistory.dh_personales==true}" th:text="true">●</a>
+                            <span th:if="${clinicHistory.dh_personales==false}" th:text="false">○</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;padding: 1% 0; width: 50px">HTA</td>
+                        <td style="text-align: center;padding: 1% 0;">
+                            <a th:if="${clinicHistory.hta_personales==true}" th:text="true">●</a>
+                            <span th:if="${clinicHistory.hta_personales==false}" th:text="false">○</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;padding: 1% 0; width: 50px">DESLIPIDEMIA</td>
+                        <td style="text-align: center;padding: 1% 0;">
+                            <a th:if="${clinicHistory.deslipidemia_personales==true}" th:text="true">●</a>
+                            <span th:if="${clinicHistory.deslipidemia_personales==false}" th:text="false">○</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;padding: 1% 0; width: 50px">TBC</td>
+                        <td style="text-align: center;padding: 1% 0;">
+                            <a th:if="${clinicHistory.tbc_personales==true}" th:text="true">●</a>
+                            <span th:if="${clinicHistory.tbc_personales==false}" th:text="false">○</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;padding: 1% 0; width: 50px">TABACOLISMO</td>
+                        <td style="text-align: center;padding: 1% 0;">
+                            <a th:if="${clinicHistory.tabacolismo_personales==true}" th:text="true">●</a>
+                            <span th:if="${clinicHistory.tabacolismo_personales==false}" th:text="false">○</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;padding: 1% 0; width: 50px">ALCOHOL</td>
+                        <td style="text-align: center;padding: 1% 0;">
+                            <a th:if="${clinicHistory.alcohol_personales==true}" th:text="true">●</a>
+                            <span th:if="${clinicHistory.alcohol_personales==false}" th:text="false">○</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;padding: 1% 0; width: 50px">OTROS</td>
+                        <td style="text-align: center;padding: 1% 0;">
+                            <a th:if="${clinicHistory.otros_personales==true}" th:text="true">●</a>
+                            <span th:if="${clinicHistory.otros_personales==false}" th:text="false">○</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;padding: 1% 0;" th:if="${clinicHistory.otros_personales==true}" th:text="'OTROS: '+${clinicHistory.otros_texto_personales}">... </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+    </table>
+</div>
+</body>
+</html>

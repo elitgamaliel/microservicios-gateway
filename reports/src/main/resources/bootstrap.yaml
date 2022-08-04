@@ -1,13 +1,10 @@
 spring:
-  mvc:
-    servlet:
-      path: /api/v1
   application:
     name: reports
-    cloud:
-      config:
-        enabled: true
-        uri: http://localhost:8081
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8081
 logging:
   level:
     org:

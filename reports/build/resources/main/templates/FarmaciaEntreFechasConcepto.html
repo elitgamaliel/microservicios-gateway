@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+@page {
+            size: A4;
+            margin-top: 0px;
+            margin-right: 7px;
+            margin-left: 6px;
+            text-align:center
+        }
+
+         html,
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            padding: 0%;
+        }
+        .container {
+        }
+
+        .title1 {
+            text-align: center;
+            font-size: 11px;
+        }
+
+        .title2 {
+            text-align: center;
+            font-size: 22px;
+        }
+
+        table,
+        thead,
+        tbody,
+        tfoot,
+        tr,
+        th,
+        td {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            border-spacing: 0;
+            border-color: inherit;
+            font-weight: inherit;
+            -webkit-border-horizontal-spacing: 0;
+            -webkit-border-vertical-spacing: 0;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 1px;
+            empty-cells: hide;
+            border-collapse: separate;
+            border-spacing: 0px;
+            margin: 0 auto;
+
+        }
+
+        .product{
+            border-collapse: collapse;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius:5px;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            background-color: rgba(255,255,255,0.2);
+            color: black;
+        }
+        th {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <table style="text-align: center;">
+        <tr>
+            <td style="text-align: center;"><img th:src="@{classpath:static/images/healthy.png}" height="100px"/></td>
+            <td>
+                <div class="title1">POLICLINICO PARROQUIAL NUESTRA SEÑORA DE FÁTIMA</div>
+                <div class="title2">SISTEMA DE CAJA Y CTAS.CTES.</div>
+                <br/>
+                <div>CENTRO DE RECAUDACION: FARMACIA</div>
+                <div th:text="'DESDE '+${service.date1}+' HASTA '+${service.date2}">DESDE 10/10/2020 HASTA </div>
+            </td>
+            <td style="text-align: center;"><img th:src="@{classpath:static/images/fatima.png}" height="100px"/></td>
+        </tr>
+    </table>
+
+    <table class="product">
+        <thead style="background: #36B0B7; font-weight: bold">
+        <tr>
+            <td style="width: 60px;">Cod</td>
+            <td style="width: 30px; text-align: right">Cant</td>
+            <td style="width: 100px;">Descripción</td>
+            <td style="width: 70px; text-align: right">Importe</td>
+        </tr>
+        </thead>
+        <tbody style="background: #d4edee">
+        <tr th:each="detalle : ${service.serviceDetail}">
+            <td style="width: 60px;" th:text="${detalle.code}">00032</td>
+            <td style="width: 30px; text-align: right" th:text="${detalle.quantity}">1</td>
+            <td style="width: 100px;" th:text="${detalle.description}">PAQUETE MEDICO</td>
+            <td style="width: 70px; text-align: right" th:text="${#numbers.formatCurrency(detalle.amount)}">S/ 65.00</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <tr>
+            <td colspan="4" style="text-align: left;" th:text="'USUARIO: '+${service.user}"> USUARIO</td>
+        </tr>
+        <tr>
+            <td style="width: 60px;"></td>
+            <td style="width: 30px;"></td>
+            <td style="width: 100px;">SUB-TOTAL -></td>
+            <td style="width: 70px;text-align: right" th:text="${#numbers.formatCurrency(service.total)}">S/ 65.00</td>
+        </tr>
+        <tr>
+            <td style="width: 60px;"></td>
+            <td style="width: 30px;"></td>
+            <td style="width: 100px;">TOTAL -></td>
+            <td style="width: 70px;text-align: right" th:text="${#numbers.formatCurrency(service.total)}">S/ 65.00</td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
